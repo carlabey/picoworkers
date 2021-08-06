@@ -1,8 +1,49 @@
-//Begin Configurations--------------
+// ==UserScript==
+// @name         picoworkers-marketing-website-visit
+// @namespace    http://tampermonkey.net/
+// @version      0.0.1
+// @description  try to take over the world!
+// @author       You
+// @exclude      https://itblog360.com
+// @match        https://itblog360.com/*
+// @grant        none
+// @require     https://code.jquery.com/jquery-3.2.1.min.js
+// ==/UserScript==
+
+(function() {
+    //'use strict';
+
+    //activity log.
+    function log(message){
+       console.log(message);
+    }
+
+    function getRndInteger(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) ) + min;
+    }
+
+
+    log("loaded");
+
+    //refresh the page every X minutes.
+    /**var min = 1000*60*5;
+    var max = 1000*60*8;
+
+    var timeOut = getRndInteger(min,max);
+    log("reload in "+ timeOut+ " seconds");
+    setTimeout(function(){
+        log("reload");
+      window.location.reload(1);
+    },timeOut);*/
+
+
+
+
+    //Begin Configurations--------------
 
 let siteConfig = {"startPage": "https://itblog360.com/",
-                  "numberOfPagesToVisit": 2, 
-                  "timePerPage": 5000,
+                  "numberOfPagesToVisit": 2,
+                  "timePerPage": 25,
                   "postClassName": "read-more button",
                   "nextSelector": "#nav-below > div > span.prev > a" ,
                  };
@@ -22,24 +63,24 @@ let savePageData = () =>{
     console.log("no saved pages");
   }
 
-  pages.push(window.location.href);
+  pages.push(decodeURI(window.location.href));
   let uniquePages = [...new Set(pages)];
   let jsString = JSON.stringify(uniquePages);
   sessionStorage.setItem('urls',jsString);
-  
 };
 
 let goToNext = function(){
-  pages = JSON.parse(sessionStorage.getItem('urls'));
+  let pages = JSON.parse(sessionStorage.getItem('urls'));
+  let req = siteConfig.numberOfPagesToVisit;
+  let completed = pages.length;
   if(pages.length === siteConfig.numberOfPagesToVisit){
-  console.log("requiered pages collected.");
+  console.log(req," requiered pages collected.");
   console.log("Exit process.");
     alert("Done!");
   }else{
-  console.log("need more pages");
+  console.log("need ",(req-completed)," more pages");
   nextPageLink.click();
   }
-  
 };
 
 //End Funcitons-------------------
@@ -50,15 +91,20 @@ let goToNext = function(){
 
 savePageData();
 
+    //stay x minutes in page
+var min = 1000*siteConfig.timePerPage;
+var max = 1000*siteConfig.timePerPage+10;
 
-setTimeout(goToNext,siteConfig.timePerPage);
+var timeOut = getRndInteger(min,max);
+log("reload in "+ timeOut+ " miliseconds");
+setTimeout(goToNext,timeOut);
 
 //scroll down
 /**
 window.scroll({
- top: 0, 
- left: 0, 
- behavior: 'smooth' 
+ top: 0,
+ left: 0,
+ behavior: 'smooth'
 });
 */
 
@@ -84,10 +130,4 @@ setTimeout(scrollTop,3000);
 setTimeout(document.querySelector("#nav-below > div > span.prev > a").scrollIntoView({behavior: "smooth"}),3000);
 
 
-
-
-//stay x minutes in page
-
-
-
-
+})();
