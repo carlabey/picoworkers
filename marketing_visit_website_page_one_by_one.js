@@ -4,8 +4,8 @@
 // @version      0.0.1
 // @description  try to take over the world!
 // @author       You
-// @exclude      https://itblog360.com
-// @match        https://itblog360.com/*
+// @match        http://prevention.beritahu.co.id/*
+// @exclude      http://prevention.beritahu.co.id/
 // @grant        none
 // @require     https://code.jquery.com/jquery-3.2.1.min.js
 // ==/UserScript==
@@ -40,15 +40,18 @@
 
 
     //Begin Configurations--------------
+let numberOfPagesToVisit = 10;
+let timePerPage = 25;
+let nextPageSelector = "footer > nav > div > div.nav-previous >a";
+
 
 let siteConfig = {"startPage": "https://itblog360.com/",
-                  "numberOfPagesToVisit": 2,
-                  "timePerPage": 25,
+                  "numberOfPagesToVisit": numberOfPagesToVisit,
+                  "timePerPage": timePerPage,
                   "postClassName": "read-more button",
                   "nextSelector": "#nav-below > div > span.prev > a" ,
                  };
-let nextPageLink = document.querySelector("#nav-below > div > span.prev > a");
-
+let nextPageLink = document.querySelector(nextPageSelector);
 //End Configurations---------------
 
 
@@ -58,7 +61,7 @@ let savePageData = () =>{
   let pages=[];
   if(sessionStorage.getItem('urls')){
     pages = JSON.parse(sessionStorage.getItem('urls'));
-    console.log("have ",pages.length," saved pages");
+    console.log("have ",pages.length,"/",numberOfPagesToVisit," saved pages");
   }else{
     console.log("no saved pages");
   }
@@ -76,7 +79,8 @@ let goToNext = function(){
   if(pages.length === siteConfig.numberOfPagesToVisit){
   console.log(req," requiered pages collected.");
   console.log("Exit process.");
-    alert("Done!");
+  pages.forEach((v)=>{console.log(v)})
+  alert("Done!");
   }else{
   console.log("need ",(req-completed)," more pages");
   nextPageLink.click();
@@ -86,6 +90,12 @@ let goToNext = function(){
 //End Funcitons-------------------
 
 //Begin Process-------------------
+if(nextPageLink){
+ console.log("Have a next page link");
+}else{
+  console.log("======NO NEXT PAGE LINK!!!=====");
+}
+
 
 //End Process---------------------
 
@@ -93,7 +103,7 @@ savePageData();
 
     //stay x minutes in page
 var min = 1000*siteConfig.timePerPage;
-var max = 1000*siteConfig.timePerPage+10;
+var max = 1000*(siteConfig.timePerPage+8);
 
 var timeOut = getRndInteger(min,max);
 log("reload in "+ timeOut+ " miliseconds");
