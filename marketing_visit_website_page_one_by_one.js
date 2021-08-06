@@ -1,8 +1,8 @@
 //Begin Configurations--------------
 
 let siteConfig = {"startPage": "https://itblog360.com/",
-                  "numberOfPagesToVisit": 8, 
-                  "timePerPage": 15000,
+                  "numberOfPagesToVisit": 2, 
+                  "timePerPage": 5000,
                   "postClassName": "read-more button",
                   "nextSelector": "#nav-below > div > span.prev > a" ,
                  };
@@ -30,7 +30,16 @@ let savePageData = () =>{
 };
 
 let goToNext = function(){
+  pages = JSON.parse(sessionStorage.getItem('urls'));
+  if(pages.length === siteConfig.numberOfPagesToVisit){
+  console.log("requiered pages collected.");
+  console.log("Exit process.");
+    alert("Done!");
+  }else{
+  console.log("need more pages");
   nextPageLink.click();
+  }
+  
 };
 
 //End Funcitons-------------------
@@ -65,12 +74,14 @@ let scrollTop = () =>{
 
 //to next link
 let scrollNextLink = () =>{
-  nextPageLink.scrollIntoView({behavior: "smooth"});
-}
+  //nextPageLink.scrollIntoView({behavior: "smooth"});
+  document.querySelector("#nav-below > div > span.prev > a").scrollIntoView({behavior: "smooth"});
+};
 
+document.querySelector("#nav-below > div > span.prev > a").scrollIntoView({behavior: "smooth"});
 setTimeout(scrollBottom,3000);
 setTimeout(scrollTop,3000);
-setTimeout(scrollNextLink(nextPageLink),3000);
+setTimeout(document.querySelector("#nav-below > div > span.prev > a").scrollIntoView({behavior: "smooth"}),3000);
 
 
 
