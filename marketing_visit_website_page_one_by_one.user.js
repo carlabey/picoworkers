@@ -4,11 +4,11 @@
 // @version      0.0.1
 // @description  try to take over the world!
 // @author       You
-// @match        http://prevention.beritahu.co.id/*
+// @match        http://prevention.beritahu.co.ids/*
 // @exclude      http://prevention.beritahu.co.id/
 // @grant        none
 // @downloadURL  https://github.com/carlabey/picoworkers/raw/main/marketing_visit_website_page_one_by_one.user.js
-// @updateURL   https://github.com/carlabey/picoworkers/raw/main/marketing_visit_website_page_one_by_one.user.js
+// @updateURL    https://github.com/carlabey/picoworkers/raw/main/marketing_visit_website_page_one_by_one.user.js
 // @require     https://code.jquery.com/jquery-3.2.1.min.js
 // ==/UserScript==
 
