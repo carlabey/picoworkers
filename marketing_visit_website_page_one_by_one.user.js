@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         picoworkers-marketing-website-visit
 // @namespace    http://tampermonkey.net/
-// @version      1.0.3
+// @version      2.0.3
 // @description  This is to make picoworkers jobs easy!
 // @author       carlabey
 // @match        http://prevention.beritahu.co.ids/*
