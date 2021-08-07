@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name         picoworkers-marketing-website-visit
 // @namespace    http://tampermonkey.net/
-// @version      0.0.1
-// @description  try to take over the world!
-// @author       You
+// @version      0.0.2
+// @description  This is to make picoworkers jobs easy!
+// @author       carlabey
 // @match        http://prevention.beritahu.co.ids/*
 // @exclude      http://prevention.beritahu.co.id/
 // @grant        none
