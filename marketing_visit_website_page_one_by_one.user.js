@@ -14,7 +14,20 @@
 
 (function() {
     //'use strict';
+    //Begin Configurations--------------
+let numberOfPagesToVisit = 10;
+let timePerPage = 25;
+let nextPageSelector = "footer > nav > div > div.nav-previous >a";
 
+let siteConfig = {
+                  "numberOfPagesToVisit": numberOfPagesToVisit,
+                  "timePerPage": timePerPage,
+                  "postClassName": "read-more button",
+                  "nextSelector": "#nav-below > div > span.prev > a" ,
+                 };
+let nextPageLink = document.querySelector(nextPageSelector);
+//End Configurations---------------
+    
     //activity log.
     function log(message){
        console.log(message);
@@ -41,20 +54,7 @@
 
 
 
-    //Begin Configurations--------------
-let numberOfPagesToVisit = 10;
-let timePerPage = 25;
-let nextPageSelector = "footer > nav > div > div.nav-previous >a";
 
-
-let siteConfig = {"startPage": "https://itblog360.com/",
-                  "numberOfPagesToVisit": numberOfPagesToVisit,
-                  "timePerPage": timePerPage,
-                  "postClassName": "read-more button",
-                  "nextSelector": "#nav-below > div > span.prev > a" ,
-                 };
-let nextPageLink = document.querySelector(nextPageSelector);
-//End Configurations---------------
 
 
 
