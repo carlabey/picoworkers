@@ -7,6 +7,8 @@
 // @match        http://prevention.beritahu.co.id/*
 // @exclude      http://prevention.beritahu.co.id/
 // @grant        none
+// @downloadURL  https://github.com/carlabey/picoworkers/raw/main/marketing_visit_website_page_one_by_one.user.js
+// @updateURL.   https://github.com/carlabey/picoworkers/raw/main/marketing_visit_website_page_one_by_one.user.js
 // @require     https://code.jquery.com/jquery-3.2.1.min.js
 // ==/UserScript==
 
