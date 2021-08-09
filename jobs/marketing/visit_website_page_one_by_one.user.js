@@ -1,11 +1,11 @@
 // ==UserScript==
 // @name         picoworkers-marketing-website-visit
 // @namespace    http://tampermonkey.net/
-// @version      2.0.3
+// @version      1.0.2
 // @description  This is to make picoworkers jobs easy!
 // @author       carlabey
-// @match        http://prevention.beritahu.co.ids/*
-// @exclude      http://prevention.beritahu.co.id/
+// @match        https://djkob.xyz/*
+// @exclude      https://djkob.xyz/
 // @grant        none
 // @downloadURL  https://github.com/carlabey/picoworkers/raw/main/marketing_visit_website_page_one_by_one.user.js
 // @updateURL    https://github.com/carlabey/picoworkers/raw/main/marketing_visit_website_page_one_by_one.user.js
@@ -17,7 +17,7 @@
     //Begin Configurations--------------
 let numberOfPagesToVisit = 10;
 let timePerPage = 25;
-let nextPageSelector = "footer > nav > div > div.nav-previous >a";
+let nextPageSelector = "#mainDiv > div.randomFile > div:nth-child(2) > a";
 
 let siteConfig = {
                   "numberOfPagesToVisit": numberOfPagesToVisit,
@@ -86,6 +86,18 @@ let goToNext = function(){
   }else{
   console.log("need ",(req-completed)," more pages");
   nextPageLink.click();
+  //even if we click go to next page, sometimes a popup can block moving to next page. this is used to overcome that issue.
+  let nextPageHref = nextPageLink.href;
+      setTimeout(function(){
+          let currentNextPageHref = nextPageLink.href;
+        if(nextPageHref == currentNextPageHref){
+            log("Still in the same page... Now go to next page");
+            window.location.href = nextPageHref;
+          }else{
+            log("Next page link href has changed");
+          }
+      },10000)
+      
   }
 };
 
@@ -133,13 +145,13 @@ let scrollTop = () =>{
 //to next link
 let scrollNextLink = () =>{
   //nextPageLink.scrollIntoView({behavior: "smooth"});
-  document.querySelector("#nav-below > div > span.prev > a").scrollIntoView({behavior: "smooth"});
+  nextPageLink.scrollIntoView({behavior: "smooth"});
 };
 
-document.querySelector("#nav-below > div > span.prev > a").scrollIntoView({behavior: "smooth"});
+nextPageLink.scrollIntoView({behavior: "smooth"});
 setTimeout(scrollBottom,3000);
 setTimeout(scrollTop,3000);
-setTimeout(document.querySelector("#nav-below > div > span.prev > a").scrollIntoView({behavior: "smooth"}),3000);
+setTimeout(nextPageLink.scrollIntoView({behavior: "smooth"}),3000);
 
 
 })();
