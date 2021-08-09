@@ -88,7 +88,7 @@ let goToNext = function(){
   nextPageLink.click();
   //even if we click go to next page, sometimes a popup can block moving to next page. this is used to overcome that issue.
   let nextPageHref = nextPageLink.href;
-      setTimeout(function(){
+      setInterval(function(){
           let currentNextPageHref = nextPageLink.href;
         if(nextPageHref == currentNextPageHref){
             log("Still in the same page... Now go to next page");
@@ -96,7 +96,7 @@ let goToNext = function(){
           }else{
             log("Next page link href has changed");
           }
-      },10000)
+      },10000);
       
   }
 };
