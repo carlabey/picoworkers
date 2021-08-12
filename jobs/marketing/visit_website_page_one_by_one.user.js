@@ -27,7 +27,7 @@ let siteConfig = {
                  };
 let nextPageLink = document.querySelector(nextPageSelector);
 //End Configurations---------------
-    
+
     //activity log.
     function log(message){
        console.log(message);
@@ -81,8 +81,9 @@ let goToNext = function(){
   if(pages.length === siteConfig.numberOfPagesToVisit){
   console.log(req," requiered pages collected.");
   console.log("Exit process.");
-  pages.forEach((v)=>{console.log(v)})
-  alert("Done!");
+  pages.forEach((v,i)=>{console.log(i+1, v);});
+  alert("Done!!");
+
   }else{
   console.log("need ",(req-completed)," more pages");
   nextPageLink.click();
@@ -97,7 +98,7 @@ let goToNext = function(){
             log("Next page link href has changed");
           }
       },10000);
-      
+
   }
 };
 
